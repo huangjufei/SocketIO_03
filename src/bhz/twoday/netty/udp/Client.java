@@ -28,10 +28,13 @@ public class Client {
             // 向网段内的所有机器广播UDP消息
             ch.writeAndFlush(new DatagramPacket(Unpooled.copiedBuffer("谚语字典查询?", CharsetUtil.UTF_8),
                     new InetSocketAddress("255.255.255.255", port))).sync();
+
+            //如果在服务器打了断点这里可以进去
             if (!ch.closeFuture().await(15000)) {
                 System.out.println("查询超时!");
             }
         } finally {
+            //总是关闭连接
             group.shutdownGracefully();
         }
     }

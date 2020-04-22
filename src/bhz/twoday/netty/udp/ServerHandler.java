@@ -9,7 +9,7 @@ import io.netty.util.internal.ThreadLocalRandom;
 
 public class ServerHandler extends SimpleChannelInboundHandler<DatagramPacket> {
 
-    // 谚语列表
+    // 谚语列表（字符串数组）
     private static final String[] DICTIONARY = {
             "只要功夫深，铁棒磨成针。",
             "旧时王谢堂前燕，飞入寻常百姓家。",
@@ -19,6 +19,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramPacket> {
     };
 
     private String nextQuote() {
+        //这里是一个随机数
         int quoteId = ThreadLocalRandom.current().nextInt(DICTIONARY.length);
         return DICTIONARY[quoteId];
     }

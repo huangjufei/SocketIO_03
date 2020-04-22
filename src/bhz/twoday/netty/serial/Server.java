@@ -13,7 +13,10 @@ import io.netty.handler.logging.LoggingHandler;
 
 
 /**
- * 主要功能:jboss来做序列化,文件压缩,还有日志(但日志的级别感觉是乱的)
+ * 主要功能:客服端上传压缩的图片，服务端接收到解压图片保存，里面用了
+ * MarshallingCodeCFactory 这个自定义的序列化器，具体到时百度哈暂时我查
+ * 2，设置了一个日志级别
+ *  .handler(new LoggingHandler(LogLevel.INFO))
  */
 public class Server {
 
@@ -31,7 +34,7 @@ public class Server {
 		 .childHandler(new ChannelInitializer<SocketChannel>() {
 			protected void initChannel(SocketChannel sc) throws Exception {
 
-				//这个必须成对出现
+				//这个必须成对出现（MarshallingCodeCFactory是自定义的）
 				sc.pipeline().addLast(MarshallingCodeCFactory.buildMarshallingDecoder());
 				sc.pipeline().addLast(MarshallingCodeCFactory.buildMarshallingEncoder());
 				sc.pipeline().addLast(new ServerHandler());

@@ -28,6 +28,7 @@ public class Client {
 			@Override
 			protected void initChannel(SocketChannel sc) throws Exception {
 				sc.pipeline().addLast(new LoggingHandler(LogLevel.TRACE));
+				//
 				sc.pipeline().addLast(MarshallingCodeCFactory.buildMarshallingDecoder());
 				sc.pipeline().addLast(MarshallingCodeCFactory.buildMarshallingEncoder());
 				sc.pipeline().addLast(new ClientHandler());

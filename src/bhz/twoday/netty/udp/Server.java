@@ -8,6 +8,11 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioDatagramChannel;
 
 
+/**
+ * 功能：使用的NioDatagramChannel协议来建立链接
+ *  客服端发送请求来后，服务端随机返回一段谚语
+ *  服务端不会自动关闭服务，而客户端自动关闭
+ */
 public class Server {
     public void run(int port) throws Exception {
         EventLoopGroup group = new NioEventLoopGroup();
@@ -27,6 +32,6 @@ public class Server {
 
     public static void main(String[] args) throws Exception {
         new Server().run(8765);
-        new Server().run(8764);
+        //new Server().run(8764);
     }
 }
