@@ -13,7 +13,9 @@ import io.netty.handler.logging.LoggingHandler;
 
 
 /**
- * 发送心跳,电脑上的硬件信息发送
+ *根据请求类型走不同的流程，可以打断电看，目前走的流程是字符串类型
+ * 暂时没找到如何走到发送心跳的流程
+ *
  */
 public class Server {
 

@@ -14,13 +14,14 @@ public class ServerHeartBeatHandler extends ChannelHandlerAdapter {
 	private static final String SUCCESS_KEY = "auth_success_key";
 	
 	static {
-		AUTH_IP_MAP.put("192.168.1.200", "1234");
+		AUTH_IP_MAP.put("192.168.43.27", "1234");
 	}
 	
 	private boolean auth(ChannelHandlerContext ctx, Object msg){
 			//System.out.println(msg);
 			String [] ret = ((String) msg).split(",");
 			String auth = AUTH_IP_MAP.get(ret[0]);
+			//这里不匹配，会断开客户端连接
 			if(auth != null && auth.equals(ret[1])){
 				ctx.writeAndFlush(SUCCESS_KEY);
 				return true;
@@ -32,7 +33,9 @@ public class ServerHeartBeatHandler extends ChannelHandlerAdapter {
 	
 	@Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+		//根据类型判断走哪里
 		if(msg instanceof String){
+			//这里有个检查
 			auth(ctx, msg);
 		} else if (msg instanceof RequestInfo) {
 			

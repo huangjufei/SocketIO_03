@@ -13,8 +13,9 @@ import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.util.SelfSignedCertificate;
 
 /**
- * An HTTP server that sends back the content of the received HTTP request
- * in a pretty plaintext form.
+ * 功能：通过启动这个服务可以和浏览器进行http通信
+ * 服务启动好后，返回一个访问路径，浏览器请求的话；服务端会向response头写一些信息
+ *
  */
 public final class HttpHelloWorldServer {
 
